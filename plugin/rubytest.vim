@@ -67,7 +67,7 @@ function s:ExecTest(cmd)
 
     let &efm = s:oldefm
   else
-    exe "!echo '" . a:cmd . "' && " . a:cmd
+      exe "execute \"ConqueTermSplit " . a:cmd . "\""
   endif
 endfunction
 
