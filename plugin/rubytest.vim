@@ -67,7 +67,7 @@ function s:ExecTest(cmd)
 
     let &efm = s:oldefm
   else
-      exe "execute \"ConqueTermSplit " . a:cmd . "\""
+      exe "call RunVimTmuxCommand(a:cmd)"
   endif
 endfunction
 
