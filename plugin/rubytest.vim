@@ -67,7 +67,7 @@ function s:ExecTest(cmd)
 
     let &efm = s:oldefm
   else
-      exe "call RunVimTmuxCommand(a:cmd)"
+    exe "!echo '" . a:cmd . "' && " . a:cmd
   endif
 endfunction
 
@@ -179,13 +179,13 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 if !hasmapto('<Plug>RubyTestRun')
-  map <unique> <Leader>t <Plug>RubyTestRun
+  map <unique> <Leader>rs <Plug>RubyTestRun
 endif
 if !hasmapto('<Plug>RubyFileRun')
-  map <unique> <Leader>T <Plug>RubyFileRun
+  map <unique> <Leader>ra <Plug>RubyFileRun
 endif
 if !hasmapto('<Plug>RubyTestRunLast')
-  map <unique> <Leader>l <Plug>RubyTestRunLast
+  map <unique> <Leader>rl <Plug>RubyTestRunLast
 endif
 
 function s:IsRubyTest()
