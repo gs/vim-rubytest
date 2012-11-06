@@ -15,10 +15,10 @@ if !exists("g:rubytest_spec_drb")
   let g:rubytest_spec_drb = 0
 endif
 if !exists("g:rubytest_cmd_test")
-  let g:rubytest_cmd_test = "ruby %p"
+  let g:rubytest_cmd_test = "ruby -Itest %p"
 endif
 if !exists("g:rubytest_cmd_testcase")
-  let g:rubytest_cmd_testcase = "ruby %p -n '/%c/'"
+  let g:rubytest_cmd_testcase = "ruby -Itest %p -n '/%c/'"
 endif
 if !exists("g:rubytest_cmd_spec")
   let g:rubytest_cmd_spec = "rspec -c %p"
