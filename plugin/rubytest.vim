@@ -289,3 +289,12 @@ let s:efm_backtrace='%D(in\ %f),'
 let s:efm_ruby='\%-E-e:%.%#,\%+E%f:%l:\ parse\ error,%W%f:%l:\ warning:\ %m,%E%f:%l:in\ %*[^:]:\ %m,%E%f:%l:\ %m,%-C%\tfrom\ %f:%l:in\ %.%#,%-Z%\tfrom\ %f:%l,%-Z%p^'
 
 let &cpo = s:save_cpo
+
+"" open tests buffer (/private/tmp/tests.tmp)
+" autocheck file on cursor move
+function OpenTestOutput()
+   exec "e /private/tmp/tests.tmp"
+   exec "set ft=ruby"
+   exec "au CursorMoved /private/tmp/tests.tmp checktime"
+endfunction
+nnoremap <leader>to :call OpenTestOutput()<cr>
