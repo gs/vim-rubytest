@@ -67,7 +67,7 @@ function s:ExecTest(cmd)
 
     let &efm = s:oldefm
   else
-    silent execute  "!" . a:cmd . " &> /tmp/tests.tmp &"
+    silent execute  "!" . a:cmd . " &> /tmp/tests.tmp &"  | redraw!
   endif
 endfunction
 
