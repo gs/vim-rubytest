@@ -8,6 +8,11 @@ if exists("rubytest_loaded")
 endif
 let rubytest_loaded = 1
 
+if exists("g:rubytest_cmd_bundler") && g:rubytest_cmd_bundler == 1
+    let g:bundler_command = 'bundle exec'
+else
+    let g:bundler_command = ''
+endif
 if !exists("g:rubytest_in_quickfix")
   let g:rubytest_in_quickfix = 0
 endif
@@ -15,22 +20,22 @@ if !exists("g:rubytest_spec_drb")
   let g:rubytest_spec_drb = 0
 endif
 if !exists("g:rubytest_cmd_test")
-  let g:rubytest_cmd_test = "ruby -Itest %p"
+  let g:rubytest_cmd_test = " ruby -Itest %p"
 endif
 if !exists("g:rubytest_cmd_testcase")
-  let g:rubytest_cmd_testcase = "ruby -Itest %p -n '/%c/'"
+  let g:rubytest_cmd_testcase = " ruby -Itest %p -n '/%c/'"
 endif
 if !exists("g:rubytest_cmd_spec")
-  let g:rubytest_cmd_spec = "rspec -c %p"
+  let g:rubytest_cmd_spec = " rspec -c %p"
 endif
 if !exists("g:rubytest_cmd_example")
-  let g:rubytest_cmd_example = "rspec -c %p -l %c"
+  let g:rubytest_cmd_example = " rspec -c %p -l %c"
 endif
 if !exists("g:rubytest_cmd_feature")
-  let g:rubytest_cmd_feature = "cucumber %p"
+  let g:rubytest_cmd_feature = " cucumber %p"
 endif
 if !exists("g:rubytest_cmd_story")
-  let g:rubytest_cmd_story = "cucumber %p -n '%c'"
+  let g:rubytest_cmd_story = " cucumber %p -n '%c'"
 endif
 
 function s:FindCase(patterns)
@@ -67,7 +72,7 @@ function s:ExecTest(cmd)
 
     let &efm = s:oldefm
   else
-    silent execute  "!" . a:cmd . " &> /tmp/tests.tmp &"  | redraw!
+    silent execute  "!" . g:bundler_command . a:cmd . " &> /tmp/tests.tmp &"  | redraw!
   endif
 endfunction
 
@@ -297,4 +302,5 @@ function OpenTestOutput()
    exec "set ft=ruby"
    exec "au CursorMoved /private/tmp/tests.tmp checktime"
 endfunction
-nnoremap <leader>to :call OpenTestOutput()<cr>
+nnoremap <silent> <leader>to :call OpenTestOutput()<cr>
+nnoremap <silent> <leader>tq :bdelete tests.tmp<cr>

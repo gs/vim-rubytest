@@ -25,6 +25,10 @@ By default, only test errors will be shown to you. If some of your tests failed,
 
   let g:rubytest_in_quickfix = 0
 
+If you would like to use bundler set g:rubytest_cmd_bundler into your .vimrc:
+
+  let g:rubytest_cmd_bundler = 1
+
 You can customize the command which will be used to run the test case by settting these options in your vimrc file:
 
   let g:rubytest_cmd_test = "ruby %p"
@@ -39,9 +43,11 @@ You can customize the command which will be used to run the test case by setttin
 Default Key Bindings
 --------------------
 
-<Leader>t: run test case under cursor
-<Leader>T: run all tests in file
-<Leader>l: run the last test, from any buffer
+<Leader>ts: run test case under cursor
+<Leader>ta: run all tests in file
+<Leader>tl: run the last test, from any buffer
+<Leader>to: opens buffer with tests.tmp file where the test output is stored
+<Leader>tq: closes opened buffer with tests.tmp
 
 You can change default key bindings:
 
